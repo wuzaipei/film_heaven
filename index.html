@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>八戒你瘦了</title>
+		<script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
+		<style type="text/css">
+			.filmInfo{
+			}
+			.filmInfo div.attr{
+				text-align: center;
+				float: left;
+			}
+			.filmInfo div.attr{
+				width: 400px;
+				height: 530px;
+				text-align: center;
+				margin-top: 30px;
+			}
+			.filmInfo div div.img img{
+				width: 300px;
+				height: 400px;
+			}
+			.filmInfo div div.tit1{
+				width: 300px;
+				height: 50px;
+				font-size: 18px;
+				margin: 0 auto;
+			}
+			.filmInfo div div.tit{
+				width: 300px;
+				height: 35px;
+				font-size: 15px;
+				margin: 0 auto;
+				line-height: 50px;
+				border-bottom: 1px solid #CCCCCC;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="filmInfo"></div>
+		<script type="text/javascript">
+		    var Ajax = function (){
+	        $.getJSON ("data/filmInfo.json", function(data){
+	            console.log(data);
+	            for (var i=0;i<data.length;i++){
+	                var imgUrl = data[i].imgUrl;
+	                
+	                var title = data[i].title;
+	                var time = data[i].time;
+	                var url = data[i].download;
+	                infoList = document.createElement('div');
+	                infoList.className = 'attr'
+	                str_info = `<div class="tit1">${title}</div>
+	                			<div class="img"><img src="${imgUrl}"></div>
+						         <div class="tit">时间：${time}</div>
+						         <div class="tit">下载地址：<a href="thunder://${url}">下载链接</a></div>`;
+                    infoList.innerHTML=str_info;
+                    var divs = document.querySelector('.filmInfo');
+                    divs.appendChild(infoList);
+                }
+
+	        });
+	    }()
+		</script>
+	</body>
+</html>

@@ -24,13 +24,13 @@
 			.filmInfo div div.tit1{
 				width: 300px;
 				height: 50px;
-				font-size: 18px;
+				font-size: 25px;
 				margin: 0 auto;
 			}
 			.filmInfo div div.tit{
 				width: 300px;
 				height: 35px;
-				font-size: 15px;
+				font-size: 20px;
 				margin: 0 auto;
 				line-height: 50px;
 				border-bottom: 1px solid #CCCCCC;
@@ -41,20 +41,19 @@
 		<div class="filmInfo"></div>
 		<script type="text/javascript">
 		    var Ajax = function (){
-	        $.getJSON ("data/filmInfo.json", function(data){
+	        $.getJSON ("data/filmData.json", function(data){
 	            console.log(data);
 	            for (var i=0;i<data.length;i++){
 	                var imgUrl = data[i].imgUrl;
-	                
 	                var title = data[i].title;
 	                var time = data[i].time;
-	                var url = data[i].download;
+	                var url = data[i].playUrl;
 	                infoList = document.createElement('div');
 	                infoList.className = 'attr'
 	                str_info = `<div class="tit1">${title}</div>
-	                			<div class="img"><img src="${imgUrl}"></div>
+	                			<div class="img"><a href="${url}"><img src="${imgUrl}"></a></div>
 						         <div class="tit">时间：${time}</div>
-						         <div class="tit">下载地址：<a href="thunder://${url}">下载链接</a></div>`;
+						         <div class="tit">播放地址：<a href="${url}">播放链接</a></div>`;
                     infoList.innerHTML=str_info;
                     var divs = document.querySelector('.filmInfo');
                     divs.appendChild(infoList);
